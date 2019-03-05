@@ -31,7 +31,7 @@
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 
-#include "ATMEGA2560_FreeRTOS.h"
+#include "ATMEGA_FreeRTOS.h"
 #include "task.h"
 
 /*-----------------------------------------------------------

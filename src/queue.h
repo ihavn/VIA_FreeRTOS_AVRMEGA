@@ -29,8 +29,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#ifndef ATMEGA2560_FREERTOS_H
-    #error "include ATMEGA2560_FreeRTOS.h" must appear in source files before "include queue.h"
+#ifndef ATMEGA_FREERTOS_H
+    #error "include ATMEGA_FreeRTOS.h" must appear in source files before "include queue.h"
 #endif
 
 #ifdef __cplusplus

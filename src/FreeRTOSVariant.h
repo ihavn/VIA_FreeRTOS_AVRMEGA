@@ -51,7 +51,7 @@ extern "C" {
 
 /*-----------------------------------------------------------*/
 #ifndef INC_TASK_H
-#include "ATMEGA2560_FreeRTOS.h"
+#include "ATMEGA_FreeRTOS.h"
 #include "task.h"
 #endif
 

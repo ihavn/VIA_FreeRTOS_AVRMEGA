@@ -53,8 +53,8 @@
  * \ingroup FreeRTOSIntro
  */
 
-#ifndef ATMEGA2560_FREERTOS_H
-    #error ATMEGA2560_FreeRTOS.h must be included before list.h
+#ifndef ATMEGA_FREERTOS_H
+    #error ATMEGA_FreeRTOS.h must be included before list.h
 #endif
 
 #ifndef LIST_H

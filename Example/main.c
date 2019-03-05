@@ -1,5 +1,5 @@
 /*
-* FreeRTOS_ATMEGA2560.c
+* FreeRTOS_ATMEGA.c
 *
 * Created: 15/10/2018 13:08:53
 * Author : IHA
@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <avr/sfr_defs.h>
 
-#include <ATMEGA2560_FreeRTOS.h>
+#include <ATMEGA_FreeRTOS.h>
 #include <semphr.h>
 
 #include "../FreeRTOSTraceDriver/FreeRTOSTraceDriver.h"

@@ -29,8 +29,8 @@
 #ifndef TIMERS_H
 #define TIMERS_H
 
-#ifndef ATMEGA2560_FREERTOS_H
-    #error "include ATMEGA2560_FreeRTOS.h must appear in source files before include timers.h"
+#ifndef ATMEGA_FREERTOS_H
+    #error "include ATMEGA_FreeRTOS.h must appear in source files before include timers.h"
 #endif
 
 /*lint -save -e537 This headers are only multiply included if the application code

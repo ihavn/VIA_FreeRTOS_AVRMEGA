@@ -25,8 +25,8 @@
  * 1 tab == 4 spaces!
  */
 
-#ifndef ATMEGA2560_FREERTOS_H
-#define ATMEGA2560_FREERTOS_H
+#ifndef ATMEGA_FREERTOS_H
+#define ATMEGA_FREERTOS_H
 
 /*
  * Include the generic headers required for the FreeRTOS port being used.
@@ -1269,5 +1269,5 @@ typedef StaticStreamBuffer_t StaticMessageBuffer_t;
 /* Variant (AVR) specific configuration options. */
 #include "FreeRTOSVariant.h"
 
-#endif /* ATMEGA2560_FREERTOS_H */
+#endif /* ATMEGA_FREERTOS_H */
 

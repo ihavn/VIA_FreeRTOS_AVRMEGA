@@ -29,8 +29,8 @@
 #ifndef INC_TASK_H
 #define INC_TASK_H
 
-#ifndef ATMEGA2560_FREERTOS_H
-    #error "include ATMEGA2560_FreeRTOS.h must appear in source files before include task.h"
+#ifndef ATMEGA_FREERTOS_H
+    #error "include ATMEGA_FreeRTOS.h must appear in source files before include task.h"
 #endif
 
 #include "list.h"

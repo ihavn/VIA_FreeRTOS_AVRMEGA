@@ -31,7 +31,7 @@
 #include <util/delay.h>
 
 /* FreeRTOS includes. */
-#include "ATMEGA2560_FreeRTOS.h"
+#include "ATMEGA_FreeRTOS.h"
 #include "task.h"
 #include "timers.h"
 

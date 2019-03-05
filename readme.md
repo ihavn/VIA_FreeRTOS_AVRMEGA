@@ -1,4 +1,4 @@
-# VIA_FreeRTOS_ATMEGA2560
+# VIA_FreeRTOS_ATMEGA
 FreeRTOS for Arduino AVR hardware, but without Arduino code.
 
 It is based on **FreeRTOS version 10.2.0** and includes the subset that fits the AVR devices.
@@ -94,7 +94,7 @@ Testing with the Software Serial library shows some incompatibilities at low bau
 
 ## Files & Configuration
 
-* `ATMEGA2560_FreeRTOS.h` : Must always be `#include` first. It references other configuration files, and sets defaults where necessary.
+* `ATMEGA_FreeRTOS.h` : Must always be `#include` first. It references other configuration files, and sets defaults where necessary.
 * `FreeRTOSConfig.h` : Contains a multitude of API and environment configurations.
 * `FreeRTOSVariant.h` : Contains the AVR specific configurations for this port of freeRTOS.
 * `heap_3.c` : Contains the heap allocation scheme based on `malloc()`. Other schemes are available, but depend on user configuration for specific MCU choice.

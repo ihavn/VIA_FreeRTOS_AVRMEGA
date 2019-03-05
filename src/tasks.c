@@ -35,7 +35,7 @@ task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
 /* FreeRTOS includes. */
-#include "ATMEGA2560_FreeRTOS.h"
+#include "ATMEGA_FreeRTOS.h"
 #include "task.h"
 #include "timers.h"
 #include "stack_macros.h"
@@ -309,7 +309,7 @@ typedef struct TaskControlBlock_t
         volatile uint8_t ucNotifyState;
     #endif
 
-    /* See the comments in ATMEGA2560_FreeRTOS.h with the definition of
+    /* See the comments in ATMEGA_FreeRTOS.h with the definition of
     tskSTATIC_AND_DYNAMIC_ALLOCATION_POSSIBLE. */
     #if( tskSTATIC_AND_DYNAMIC_ALLOCATION_POSSIBLE != 0 ) /*lint !e731 !e9029 Macro has been consolidated for readability reasons. */
         uint8_t    ucStaticallyAllocated;         /*< Set to pdTRUE if the task is a statically allocated to ensure no attempt is made to free the memory. */

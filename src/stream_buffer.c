@@ -35,7 +35,7 @@ task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
 /* FreeRTOS includes. */
-#include "ATMEGA2560_FreeRTOS.h"
+#include "ATMEGA_FreeRTOS.h"
 #include "task.h"
 #include "stream_buffer.h"
 
