@@ -6,7 +6,9 @@ It is based on **FreeRTOS version 10.2.0** and includes the subset that fits the
 Based on a Fork of Phillip Stevens FreeRTOS fork optimised for the Arduino AVR devices.
 
 ### Project Setup
-Add this repository in to your projects root as a git-submodule:`git submodule add https://github.com/ihavn/VIA_FreeRTOS_AVRMEGA FreeRTOS`
+Add this repository in to your projects root as a git-submodule:
+
+`git submodule add https://github.com/ihavn/VIA_FreeRTOS_AVRMEGA FreeRTOS`
 
 Add `../FreeRTOS/src` as a relative include path under the projects `Properties->Toolchain->AVR/GNU C Compiler->Directories`.
 
