@@ -53,6 +53,7 @@
 #define configUSE_TRACE_FACILITY            1
 #define configUSE_16_BIT_TICKS              1
 #define configIDLE_SHOULD_YIELD             1
+#define configTOTAL_HEAP_SIZE				4000
 
 #define configUSE_MUTEXES                   1
 #define configUSE_RECURSIVE_MUTEXES         1
