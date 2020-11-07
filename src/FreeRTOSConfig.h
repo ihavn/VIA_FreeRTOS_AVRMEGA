@@ -51,7 +51,7 @@
 #define configMINIMAL_STACK_SIZE            ( 192 )
 #define configMAX_TASK_NAME_LEN             ( 8 )
 #define configUSE_TRACE_FACILITY            1
-#define configUSE_16_BIT_TICKS              0								// Use 32 bits ticks
+#define configUSE_16_BIT_TICKS              1
 #define configIDLE_SHOULD_YIELD             1
 
 #define configUSE_MUTEXES                   1
