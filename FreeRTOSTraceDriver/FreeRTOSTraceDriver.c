@@ -10,7 +10,7 @@
 
  void trace_init(void)
  {
-	 #if (configUSE_TRACE_FACILITY == 1)
+	 #if (configUseR2RTrace == 1)
 	 #ifdef HAL_DEFS_H_
 
 	 #else
@@ -20,7 +20,7 @@
 	 #endif
  }
 
- #if (configUSE_TRACE_FACILITY == 1)
+ #if (configUseR2RTrace == 1)
 	/**********************************************************************//**
 	 @ingroup trace
 	 @brief Set PORTB bit 2-5, to the task switched into running by the operating system.

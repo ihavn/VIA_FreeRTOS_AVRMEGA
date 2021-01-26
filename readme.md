@@ -1,7 +1,7 @@
 # VIA_FreeRTOS_ATMEGA
 FreeRTOS for Arduino AVR hardware, but without Arduino code.
 
-It is based on **FreeRTOS version 10.2.0** and includes the subset that fits the AVR devices.
+It is based on **FreeRTOS version 10.4.1** and includes the subset that fits the AVR devices.
 
 Based on a Fork of Phillip Stevens FreeRTOS fork optimised for the Arduino AVR devices.
 
@@ -21,15 +21,10 @@ Take a look at the `main.c`in the `Example` folder to get started. It is recomme
 ### FreeRTOS Configuration
 Configuration of FreeRTOS must be done in `\FreeRTOS\src\FreeRTOSConfig.h` see details in the free RTOS documentation. **Be sure you know what you are doing before you configure anything!**
 
-#### FreeRTOS Heap Memory
-This repository uses heap_4.c to handle dynamic memory/heap therefore it is **required to define how much RAM we will allocate for 
-heap use**. This is done by defining
-`#define configTOTAL_HEAP_SIZE 4000` in the configuration file `\FreeRTOS\src\FreeRTOSConfig.h`. In this example it is defined to 4000.
-
 #### R2R Network for trace 
-If `#define configUSE_TRACE_FACILITY 1` then the `FreeRTOSTraceDriver` is called when a task is switched in and out, and it will send data out to a R2R-network that must be connected to PORTK.
+If `#define configUseR2RTrace 1` then the `FreeRTOSTraceDriver` is called when a task is switched in and out, and it will send data out to a R2R-network that must be connected to PORTK.
 
-If `#define configUSE_TRACE_FACILITY 0` then the `FreeRTOSTraceDriver` will not be used, and can be removed from the project.
+If `#define configUseR2RTrace 0` then the `FreeRTOSTraceDriver` will not be used, and can be removed from the project.
  
 ## Original Phillip Stevens README
 This is a fork of Richard Barry's freeRTOS, optimised for the Arduino AVR devices.
@@ -37,23 +32,24 @@ This is a fork of Richard Barry's freeRTOS, optimised for the Arduino AVR device
 It has been created to provide access to FreeRTOS capabilities, with full compatibility to the Arduino environment.
 It does this by keeping hands off almost everything, and only touching the minimum of hardware to be successful.
 
-## Further Reading
+[![Arduino CI](https://github.com/feilipu/Arduino_FreeRTOS_Library/workflows/Arduino%20CI/badge.svg)](https://github.com/marketplace/actions/arduino_ci)
 
-The canonical source for information is the [FreeRTOS Web Site](https://www.freertos.org/).
-Within this site, the [Getting Started](https://www.freertos.org/FreeRTOS-quick-start-guide.html) page is very useful.
+## Usage & Further Reading
 
-I have a short blog post on [Arduino FreeRTOS](https://feilipu.me/2015/11/24/arduino_freertos/), and another much older post on using [FreeRTOS with AVR](https://feilipu.me/2011/09/22/freertos-and-libraries-for-avr-atmega/), which may be useful to read too. There are some further posts I've written on [Hackster.IO](https://www.hackster.io/feilipu), but they're essentially the same content.
+Read the short blog post on [Arduino FreeRTOS](https://feilipu.me/2015/11/24/arduino_freertos/) to get started. And there is another much older post on using [FreeRTOS with AVR](https://feilipu.me/2011/09/22/freertos-and-libraries-for-avr-atmega/), which may be useful to read too. There are some further posts I've written on [Hackster.IO](https://www.hackster.io/feilipu), but they're essentially the same content.
 
-My other [AVRfreeRTOS Sourceforge Repository](https://sourceforge.net/projects/avrfreertos/) or [AVRfreeRTOS Github](https://github.com/feilipu/avrfreertos) has plenty of examples,
-ranging from [blink](https://sourceforge.net/projects/avrfreertos/files/MegaBlink/) through to a [synthesiser](https://sourceforge.net/projects/avrfreertos/files/GA_Synth/).
+The canonical source for information is the [FreeRTOS Web Site](https://www.freertos.org/). Within this site, the [Getting Started](https://www.freertos.org/FreeRTOS-quick-start-guide.html) page is very useful. This is the source for FreeRTOS usage (as distinct from installing and using this Arduino Library).
+
+My other [AVRfreeRTOS Sourceforge Repository](https://sourceforge.net/projects/avrfreertos/) or [AVRfreeRTOS Github](https://github.com/feilipu/avrfreertos) has plenty of examples, ranging from [blink](https://sourceforge.net/projects/avrfreertos/files/MegaBlink/) through to a [synthesiser](https://sourceforge.net/projects/avrfreertos/files/GA_Synth/).
+
+This library was the genesis of [generalised support for the ATmega platform within FreeRTOS](https://github.com/FreeRTOS/FreeRTOS-Kernel/pull/48).
 
 ## General
 
 FreeRTOS has a multitude of configuration options, which can be specified from within the FreeRTOSConfig.h file.
 To keep commonality with all of the Arduino hardware options, some sensible defaults have been selected.
 
-The AVR Watchdog Timer is used to generate 15ms time slices, but Tasks that finish before their allocated time will hand execution back to the Scheduler.
-This does not affect the use of any of the normal Timer functions in Arduino.
+The AVR Watchdog Timer is used to generate 15ms time slices, but Tasks that finish before their allocated time will hand execution back to the Scheduler. This does not affect the use of any of the normal Timer functions in Arduino.
 
 Time slices can be selected from 15ms up to 500ms. Slower time slicing can allow the Arduino MCU to sleep for longer, without the complexity of a Tickless idle.
 
@@ -64,6 +60,8 @@ Watchdog period options:
 * `WDTO_120MS`
 * `WDTO_250MS`
 * `WDTO_500MS`
+* `WDTO_1S`
+* `WDTO_2S`
 
 Note that Timer resolution is affected by integer math division and the time slice selected. Trying to measure 50ms, using a 120ms time slice for example, won't work.
 
@@ -101,7 +99,8 @@ Testing with the Software Serial library shows some incompatibilities at low bau
   * ATmega1284p @ 24.576MHz : Seeed Studio Goldilocks, Seeed Studio Goldilocks Analogue
   * ATmega2560 @ 16MHz : Arduino Mega, Arduino ADK
   * ATmega2560 @ 16MHz : Seeed Studio ADK
-  * ATmegaXXXX @ XXMHz : Anything with an ATmega MCU, really.
+  
+The new megaAVR 0-Series devices (eg. ATmega4809) are not fully compatible with this library. Their Timer configuration is substantially different from previous devices, and forms part of a new __avr8x__ architecture. It may be a while until avr-libc is updated to include support for megaAVR devices, but when that happens further work will be added here.
 
 ## Files & Configuration
 
@@ -109,5 +108,6 @@ Testing with the Software Serial library shows some incompatibilities at low bau
 * `FreeRTOSConfig.h` : Contains a multitude of API and environment configurations.
 * `FreeRTOSVariant.h` : Contains the AVR specific configurations for this port of freeRTOS.
 * `heap_3.c` : Contains the heap allocation scheme based on `malloc()`. Other schemes are available, but depend on user configuration for specific MCU choice.
+
 
 

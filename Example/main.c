@@ -38,7 +38,7 @@ void create_tasks_and_semaphores(void)
 
 	xTaskCreate(
 	task1
-	,  (const portCHAR *)"Task1"  // A name just for humans
+	,  "Task1"  // A name just for humans
 	,  configMINIMAL_STACK_SIZE  // This stack size can be checked & adjusted by reading the Stack Highwater
 	,  NULL
 	,  2  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.
@@ -46,7 +46,7 @@ void create_tasks_and_semaphores(void)
 
 	xTaskCreate(
 	task2
-	,  (const portCHAR *)"Task2"  // A name just for humans
+	,  "Task2"  // A name just for humans
 	,  configMINIMAL_STACK_SIZE  // This stack size can be checked & adjusted by reading the Stack Highwater
 	,  NULL
 	,  1  // Priority, with 3 (configMAX_PRIORITIES - 1) being the highest, and 0 being the lowest.

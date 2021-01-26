@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Phillip Stevens  All Rights Reserved.
+ * Copyright (C) 2020 Phillip Stevens  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -18,7 +18,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * 1 tab == 4 spaces!
  *
  * This file is NOT part of the FreeRTOS distribution.
  *
@@ -37,7 +36,9 @@ extern "C" {
 // System Tick - Scheduler timer
 // Use the Watchdog timer, and choose the rate at which scheduler interrupts will occur.
 
-#define portUSE_WDTO            WDTO_15MS    // portUSE_WDTO to use the Watchdog Timer for xTaskIncrementTick
+#ifndef portUSE_WDTO
+    #define portUSE_WDTO        WDTO_15MS    // portUSE_WDTO to use the Watchdog Timer for xTaskIncrementTick
+#endif
 
 /* Watchdog period options:     WDTO_15MS
                                 WDTO_30MS
@@ -45,11 +46,14 @@ extern "C" {
                                 WDTO_120MS
                                 WDTO_250MS
                                 WDTO_500MS
+                                WDTO_1S
+                                WDTO_2S
 */
 //    xxx Watchdog Timer is 128kHz nominal, but 120 kHz at 5V DC and 25 degrees is actually more accurate, from data sheet.
 #define configTICK_RATE_HZ      ( (TickType_t)( (uint32_t)128000 >> (portUSE_WDTO + 11) ) )  // 2^11 = 2048 WDT scaler for 128kHz Timer
 
 /*-----------------------------------------------------------*/
+
 #ifndef INC_TASK_H
 #include "ATMEGA_FreeRTOS.h"
 #include "task.h"
@@ -60,14 +64,14 @@ void initVariant(void);
 void vApplicationIdleHook( void );
 
 void vApplicationMallocFailedHook( void );
-void vApplicationStackOverflowHook( TaskHandle_t xTask, portCHAR *pcTaskName );
+void vApplicationStackOverflowHook( TaskHandle_t xTask, char * pcTaskName );
 
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,
-                                    StackType_t **ppxIdleTaskStackBuffer,
-                                    configSTACK_DEPTH_TYPE *pulIdleTaskStackSize );
-void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer,
-                                     StackType_t **ppxTimerTaskStackBuffer,
-                                     configSTACK_DEPTH_TYPE *pulTimerTaskStackSize );
+void vApplicationGetIdleTaskMemory( StaticTask_t ** ppxIdleTaskTCBBuffer,
+                                    StackType_t ** ppxIdleTaskStackBuffer,
+                                    configSTACK_DEPTH_TYPE * pulIdleTaskStackSize );
+void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
+                                     StackType_t ** ppxTimerTaskStackBuffer,
+                                     configSTACK_DEPTH_TYPE * pulTimerTaskStackSize );
 
 #ifdef __cplusplus
 }
