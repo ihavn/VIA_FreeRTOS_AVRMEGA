@@ -1,5 +1,5 @@
 /*
- * FreeRTOS Kernel V10.4.1
+ * FreeRTOS Kernel V10.4.3
  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -99,7 +99,7 @@ to exclude the API function. */
 #define INCLUDE_vTaskCleanUpResources           1
 #define INCLUDE_vTaskSuspend                    1
 #define INCLUDE_vResumeFromISR                  1
-#define INCLUDE_vTaskDelayUntil                 1
+#define INCLUDE_xTaskDelayUntil                 1
 #define INCLUDE_vTaskDelay                      1
 #define INCLUDE_xTaskGetSchedulerState          0
 #define INCLUDE_xTaskGetIdleTaskHandle          0 // create an idle task handle.
@@ -113,8 +113,10 @@ to exclude the API function. */
  * configASSERT macro: https://www.freertos.org/a00110.html#configASSERT
  */
 #ifndef configASSERT
+    #define configDEFAULT_ASSERT 0
+#else
     /**
-     * Enable configASSERT macro by default if it is not defined.
+     * Enable configASSERT macro if it is defined.
      */
     #ifndef configDEFAULT_ASSERT
         #define configDEFAULT_ASSERT 1
@@ -127,9 +129,6 @@ to exclude the API function. */
         extern void vApplicationAssertHook();
         #define configASSERT( x ) if (( x ) == 0) { vApplicationAssertHook(); }
     #endif
-
-#else
-    #define configDEFAULT_ASSERT 0
 #endif
 
 /* Inject R2R trace facility IHA VIA */
