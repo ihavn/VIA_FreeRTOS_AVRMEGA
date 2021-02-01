@@ -1,7 +1,7 @@
 # VIA_FreeRTOS_ATMEGA
 FreeRTOS for Arduino AVR hardware, but without Arduino code.
 
-It is based on **FreeRTOS version 10.4.1** and includes the subset that fits the AVR devices.
+It is based on **FreeRTOS version 10.4.3** and includes the subset that fits the AVR devices.
 
 Based on a Fork of Phillip Stevens FreeRTOS fork optimised for the Arduino AVR devices.
 
@@ -20,6 +20,13 @@ Take a look at the `main.c`in the `Example` folder to get started. It is recomme
 
 ### FreeRTOS Configuration
 Configuration of FreeRTOS must be done in `\FreeRTOS\src\FreeRTOSConfig.h` see details in the free RTOS documentation. **Be sure you know what you are doing before you configure anything!**
+
+
+### FreeRTOS Heap Memory
+This repository uses heap_4.c to handle dynamic memory/heap therefore it is **required to define how much RAM we will allocate for 
+heap use**. This is done by defining
+`#define configTOTAL_HEAP_SIZE 4000` in the configuration file `\FreeRTOS\src\FreeRTOSConfig.h`. In this example it is defined to 4000 bytes.
+
 
 #### R2R Network for trace 
 If `#define configUseR2RTrace 1` then the `FreeRTOSTraceDriver` is called when a task is switched in and out, and it will send data out to a R2R-network that must be connected to PORTK.
