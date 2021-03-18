@@ -54,9 +54,9 @@
 #define configMAX_PRIORITIES                10
 #define configIDLE_SHOULD_YIELD             1
 #define configMINIMAL_STACK_SIZE            ( 192 )
-#define configMAX_TASK_NAME_LEN             ( 8 )
+#define configMAX_TASK_NAME_LEN             ( 16 )
 
-#define configTOTAL_HEAP_SIZE 				4000   // Heap size 
+#define configTOTAL_HEAP_SIZE 				2500   // Heap size 
 
 #define configQUEUE_REGISTRY_SIZE           0
 #define configCHECK_FOR_STACK_OVERFLOW      1
@@ -74,10 +74,10 @@
 #define configSUPPORT_STATIC_ALLOCATION     0
 
 /* Timer definitions. */
-#define configUSE_TIMERS                    0
+#define configUSE_TIMERS                    1
 #define configTIMER_TASK_PRIORITY           ( ( UBaseType_t ) 3 )
 #define configTIMER_QUEUE_LENGTH            ( ( UBaseType_t ) 10 )
-#define configTIMER_TASK_STACK_DEPTH        ( 85 )
+#define configTIMER_TASK_STACK_DEPTH        ( configMINIMAL_STACK_SIZE )
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES               0
